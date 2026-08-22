@@ -36,15 +36,8 @@
             text-align: center;
             color: #888888;
         }
-        .blink {
-            animation: blinker 1s steps(2, start) infinite;
-            color: #ff0055;
-            font-weight: bold;
-        }
-        @keyframes blinker {
-            to { visibility: hidden; }
-        }
 
+        /* アクセスカウンター */
         .counter-wrapper {
             text-align: center;
             margin: 20px 0;
@@ -71,6 +64,7 @@
             border: 1px solid #333;
         }
 
+        /* 100の倍数（キリ番）のときの虹色演出 */
         .rainbow-mode {
             background: linear-gradient(to right, red, orange, yellow, green, cyan, blue, violet);
             -webkit-background-clip: text;
@@ -81,13 +75,8 @@
             0% { filter: hue-rotate(0deg); }
             100% { filter: hue-rotate(360deg); }
         }
-        .kiriban-text {
-            color: #ffff00;
-            font-size: 12px;
-            margin-top: 5px;
-            font-weight: bold;
-        }
 
+        /* BBS風の枠 */
         .bbs-post {
             border: 2px groove #ffffff;
             background-color: #000080;
@@ -109,11 +98,14 @@
     <h1>★ MY TEXT SITE ★</h1>
     <p>ここは個人の趣味で運営しているテキストサイトです。</p>
 
+    <!-- アクセスカウンター表示部 -->
     <div style="text-align: center;">
         <div class="counter-wrapper">
-    　　　　<span class="counter-label">ACCESS COUNTER:</span>
-    　　　　<div id="counter" class="retro-counter">000000</div>
-　　</div>
+            <span class="counter-label">ACCESS COUNTER:</span>
+            <div id="counter" class="retro-counter">000000</div>
+        </div>
+    </div>
+
     <h2>■ Update</h2>
     <div class="update-box">
         2026/08/22 - サイト開設<br>
@@ -142,6 +134,7 @@
     </footer>
 </div>
 
+<!-- アクセスカウンター制御スクリプト -->
 <script>
 (function() {
     let count = localStorage.getItem('site_access_count') || 99;
@@ -150,7 +143,6 @@
 
     let formattedCount = String(count).padStart(6, '0');
     const counterEl = document.getElementById('counter');
-    const msgEl = document.getElementById('kiriban-msg');
 
     counterEl.innerText = formattedCount;
 
