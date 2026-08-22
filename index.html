@@ -37,7 +37,6 @@
             color: #888888;
         }
 
-        /* アクセスカウンター */
         .counter-wrapper {
             text-align: center;
             margin: 20px 0;
@@ -64,7 +63,6 @@
             border: 1px solid #333;
         }
 
-        /* 100の倍数（キリ番）のときの虹色演出 */
         .rainbow-mode {
             background: linear-gradient(to right, red, orange, yellow, green, cyan, blue, violet);
             -webkit-background-clip: text;
@@ -76,7 +74,6 @@
             100% { filter: hue-rotate(360deg); }
         }
 
-        /* BBS風の枠 */
         .bbs-post {
             border: 2px groove #ffffff;
             background-color: #000080;
@@ -98,7 +95,7 @@
     <h1>★ MY TEXT SITE ★</h1>
     <p>ここは個人の趣味で運営しているテキストサイトです。</p>
 
-    <!-- アクセスカウンター表示部 -->
+    
     <div style="text-align: center;">
         <div class="counter-wrapper">
             <span class="counter-label">ACCESS COUNTER:</span>
@@ -134,7 +131,7 @@
     </footer>
 </div>
 
-<!-- アクセスカウンター制御スクリプト -->
+
 <script>
 (function() {
     let count = localStorage.getItem('site_access_count') || 99;
