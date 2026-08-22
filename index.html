@@ -2,21 +2,20 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>ようこそ！私のテキストサイトへ</title>
+    <title>大ソ日小之の珍道中</title>
     <style>
-        /* レトロなテキストサイト風のスタイル定義 */
         body {
-            background-color: #000000; /* 黒背景 */
-            color: #ffffff;            /* 白文字 */
-            font-family: "MS Pゴシック", "MS Gothic", sans-serif; /* 昔ながらのフォント */
+            background-color: #000000;
+            color: #ffffff;
+            font-family: "MS Pゴシック", "MS Gothic", sans-serif;
             margin: 40px;
             line-height: 1.6;
         }
         a {
-            color: #00ffff; /* 鮮やかな水色のリンク */
+            color: #00ffff;
         }
         a:visited {
-            color: #ff00ff; /* 訪問済みの紫リンク */
+            color: #ff00ff;
         }
         .container {
             max-width: 600px;
@@ -37,6 +36,71 @@
             text-align: center;
             color: #888888;
         }
+        .blink {
+            animation: blinker 1s steps(2, start) infinite;
+            color: #ff0055;
+            font-weight: bold;
+        }
+        @keyframes blinker {
+            to { visibility: hidden; }
+        }
+
+        .counter-wrapper {
+            text-align: center;
+            margin: 20px 0;
+            border: 2px inset #666;
+            background-color: #111;
+            padding: 10px;
+            display: inline-block;
+        }
+        .counter-label {
+            font-size: 10px;
+            color: #00ff00;
+            font-family: monospace;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .retro-counter {
+            font-family: "Courier New", Courier, monospace;
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 4px;
+            background-color: #000;
+            color: #ff0000;
+            padding: 2px 8px;
+            border: 1px solid #333;
+        }
+
+        .rainbow-mode {
+            background: linear-gradient(to right, red, orange, yellow, green, cyan, blue, violet);
+            -webkit-background-clip: text;
+            color: transparent !important;
+            animation: rainbow-spin 2s linear infinite;
+        }
+        @keyframes rainbow-spin {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+        .kiriban-text {
+            color: #ffff00;
+            font-size: 12px;
+            margin-top: 5px;
+            font-weight: bold;
+        }
+
+        .bbs-post {
+            border: 2px groove #ffffff;
+            background-color: #000080;
+            padding: 10px;
+            margin-bottom: 15px;
+            font-size: 13px;
+        }
+        .bbs-header {
+            border-bottom: 1px dashed #aaaaaa;
+            padding-bottom: 4px;
+            margin-bottom: 8px;
+            color: #00ffff;
+        }
     </style>
 </head>
 <body>
@@ -45,9 +109,18 @@
     <h1>★ MY TEXT SITE ★</h1>
     <p>ここは個人の趣味で運営しているテキストサイトです。</p>
 
+    <div style="text-align: center;">
+        <div class="counter-wrapper">
+            <span class="counter-label">ACCESS COUNTER:</span>
+            <div id="counter" class="retro-counter">000000</div>
+            <div id="kiriban-msg" class="kiriban-text"></div>
+        </div>
+        <p style="font-size: 12px; color: #aaa;">※キリ番を踏まれた方はBBSにてご報告ください！</p>
+    </div>
+
     <h2>■ Update</h2>
     <div class="update-box">
-        2026/08/22 - サイト開設<br>
+        2026/08/22 - サイト開設 <span class="blink">★NEW★</span><br>
         2026/08/23 - はじめに（日記）を追加
     </div>
 
@@ -58,10 +131,40 @@
         <li><a href="#">Link</a> - お気に入りサイト</li>
     </ul>
 
+    <h2>■ BBS（掲示板風）</h2>
+    <div class="bbs-post">
+        <div class="bbs-header">
+            [1] <strong>管理人</strong> - 2026/08/22 (Sat) 20:00
+        </div>
+        <div class="bbs-body">
+            いらっしゃいませ！足跡帳代わりに一言どうぞ。<br>
+            キリ番報告もお待ちしております。
+        </div>
+    </div>
+
     <footer>
         (C) 2026 My Text Site. All Rights Reserved.
     </footer>
 </div>
+
+<script>
+(function() {
+    let count = localStorage.getItem('site_access_count') || 99;
+    count = parseInt(count) + 1;
+    localStorage.setItem('site_access_count', count);
+
+    let formattedCount = String(count).padStart(6, '0');
+    const counterEl = document.getElementById('counter');
+    const msgEl = document.getElementById('kiriban-msg');
+
+    counterEl.innerText = formattedCount;
+
+    if (count % 100 === 0) {
+        counterEl.classList.add('rainbow-mode');
+        msgEl.innerText = "★祝！" + count + " HIT キリ番ゲット！★";
+    }
+})();
+</script>
 
 </body>
 </html>
